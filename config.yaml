@@ -1,0 +1,42 @@
+#
+# controller 계정이 Event를 처리하는 AWS Region의 alias 입니다.
+#
+# base_region: ap-northeast-2
+# base_region_alias: apne2
+base_region: us-east-1
+base_region_alias: use1
+
+
+#
+# 패턴 별, event-handler 정보와 policy에 대한 정보입니다.
+# patterns:
+#   {PATTERN_ALIAS}: {POLICY_MAP}
+#
+patterns:
+  console-login:
+    source: [aws.signin]
+    detail-type: [AWS Console Sign In via CloudTrail]
+  create-access-key:
+    source: [aws.iam]
+    detail-type: [AWS API Call via CloudTrail]
+    detail:
+      eventSource: [iam.amazonaws.com]
+      eventName: [CreateAccessKey]
+  sensitive-port-open:
+    source: [aws.ec2]
+    detail-type: [AWS API Call via CloudTrail]
+    detail:
+      eventSource: [ec2.amazonaws.com]
+      eventName: [AuthorizeSecurityGroupIngress, ModifySecurityGroupRules]
+  detect-login-brute-force:
+    source: [aws.signin]
+    detail-type: [AWS Service Event via CloudTrail, AWS Console Sign In via CloudTrail]
+    detail:
+      eventSource: [signin.amazonaws.com]
+      eventName: [CredentialVerification, ConsoleLogin]
+  auto-create-webacl:
+    source: ["aws.cloudfront"]
+    detail-type": ["AWS API Call via CloudTrail"]
+    detail:
+      eventSource: ["cloudfront.amazonaws.com"]
+      eventName: ["CreateDistribution"]

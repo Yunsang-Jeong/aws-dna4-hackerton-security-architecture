@@ -1,0 +1,39 @@
+# General
+**/.DS_Store
+**/.vscode/
+
+# Local .terraform directories
+**/.terraform/*
+
+# Local terragrunt-cache directories
+**/.terragrunt-cache
+**/terragrunt-debug.tfvars.json
+
+# .tfstate files
+**/*.tfstate
+**/*.tfstate.backup
+**/*.tfstate.lock.info
+**/*.tfstate.*
+
+# terraform override
+**/override.tf
+**/override.tf.json
+**/*_override.tf
+**/*_override.tf.json
+
+# lock file
+**/.terraform.lock.hcl
+
+# log files
+**/*.log
+
+# Credential
+**/*.tfvars
+**/*.pem
+**/*.bak
+**/*.plan
+
+# event-handler-src
+event-handler-src/*/layer/**
+event-handler-src/*/layer.zip
+event-handler-src/*/function.zip
